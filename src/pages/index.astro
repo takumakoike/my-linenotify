@@ -1,11 +1,11 @@
 ---
-export const clientID = "xQDd1RzlrR2qoDIQvmdASG";
-export const clientSECRET = "OmHSL6B0HHnUSNpROhmHQF9i1u45ELIbs0dvfrKoMuO"
+export const clientID = "OnPYNkoqPNa1r";
+export const clientSECRET = "zM]lbkZVuDv4Sy=GfICYZudy4.!SXitR"
 export const redirectURI = "https://my-linenotify.vercel.app/redirect"
 
 
 const url = Astro.request.url
-const getAPI = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${clientID}&redirect_uri=${redirectURI}&scope=notify&state=state&response_mode=form_post`
+const getAPI = `https://www.chatwork.com/packages/oauth2/login.php?response_type=code&client_id=${clientID}&redirect_uri=${redirectURI}&scope=rooms.all:read_write%20users.profile.me:read`
 ---
 
 <html lang="ja">
@@ -18,7 +18,7 @@ const getAPI = `https://notify-bot.line.me/oauth/authorize?response_type=code&cl
 	</head>
 	<body>
 		<h1>Astro</h1>
-		<a href={getAPI} target="_blank">LINE認証</a>
+		<a href="https://www.chatwork.com/packages/oauth2/login.php" target="_blank">LINE認証</a>
 		<p>{url}</p>
 	</body>
 </html>
