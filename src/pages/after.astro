@@ -1,7 +1,7 @@
 ---
 import Common from "../components/Common.astro";
 import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
-const NOW_URL = Astro.request.url;
+const NOW_URL = Astro.url;
 
 let code = ""
 if(Astro.request.method === "POST"){
