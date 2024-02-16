@@ -1,8 +1,14 @@
 ---
+export const clientID = "sXsAgy1FepR0VE4FGzJTxQ";
+export const clientSECRET = "gjW5lHctAi9XkAKpBNEDsmFBWN3gyMQOfYTNlwYI9F8"
+export const redirectURI = "https://my-linenotify.vercel.app/redirect"
 
+
+const url = Astro.request.url
+const getAPI = `https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${clientID}&redirect_uri=${redirectURI}&scope=notify&state=state&response_mode=form_post`
 ---
 
-<html lang="en">
+<html lang="ja">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -12,5 +18,7 @@
 	</head>
 	<body>
 		<h1>Astro</h1>
+		<a href={getAPI} target="_blank">LINE認証</a>
+		<p>{url}</p>
 	</body>
 </html>
