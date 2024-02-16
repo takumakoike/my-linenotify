@@ -12,6 +12,21 @@ if(Astro.request.method === "POST"){
 	}
 }
 
+const AUTH_POST_ENDPOINT = "https://notify-bot.line.me/oauth/token"
+const PARAMS = {
+	method: "POST",
+	headers:{
+		"Content-Type": "application/x-www-form-urlencoded",
+	},
+	grant_type:"authorization_code",
+	code:code,
+	redirect_uri:REDIRECT_URI,
+	client_id:CLIENTID,
+	client_secret:CLIENTSECRET,
+}
+
+// let response = await fetch(AUTH_POST_ENDPOINT, PARAMS)
+// let jsonData = await response.json()
 ---
 <Common 
 	pageTitle="認証が完了しました"
