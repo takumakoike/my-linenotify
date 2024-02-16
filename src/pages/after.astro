@@ -1,7 +1,7 @@
 ---
 import Common from "../components/Common.astro";
 import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
-const NOW_URL = Astro.url;
+// const NOW_URL = Astro.url;
 
 let code = ""
 if(Astro.request.method === "POST"){
@@ -39,7 +39,8 @@ const PARAMS = {
 		<dl>
 			<div class="flex lg:flex-col gap-2 mb-5">
                 <dd>このページのURL</dd>
-                <dd>{NOW_URL}</dd>
+                <p>{Astro.response.status}</p>
+                <!-- <dd>{NOW_URL}</dd> -->
             </div>
             {AUTH_POST_ENDPOINT}
 			<div  class="flex lg:flex-col gap-2 mb-5">
