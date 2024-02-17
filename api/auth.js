@@ -14,11 +14,11 @@ export default async (req, res) => {
             "Content-Type": "application/x-www-form-urlencoded",
             },
             body: new URLSearchParams({
-            grant_type: "authorization_code",
-            code,
-            redirect_uri: REDIRECT_URI,
-            client_id: CLIENT_ID,
-            client_secret: CLIENT_SECRET,
+                grant_type: "authorization_code",
+                code:code,
+                redirect_uri: REDIRECT_URI,
+                client_id: CLIENT_ID,
+                client_secret: CLIENT_SECRET,
             })
         });
 
