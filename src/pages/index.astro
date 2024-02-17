@@ -8,6 +8,7 @@ export const REDIRECT_URI = "https://my-linenotify.vercel.app/after"
 export const AUTH_GET_ENDPOINT = "https://notify-bot.line.me/oauth/authorize"
 const param = `response_type=code&client_id=${CLIENTID}&redirect_uri=${REDIRECT_URI}&scope=notify&state=state`
 const AUTH_GET_REQUEST = AUTH_GET_ENDPOINT + "?" + param
+import SendMessage from '../components/SendMessage.tsx';
 ---
 <Common 
     pageTitle="Astroを使ったLINE連携"
@@ -18,5 +19,6 @@ const AUTH_GET_REQUEST = AUTH_GET_ENDPOINT + "?" + param
             <h2 class="text-3xl text-green-500 font-bold text-center">LINEログイン認証</h2>
             <a href={AUTH_GET_REQUEST} target="_blank" class="btn bg-blue-600 flex justify-center p-2 mt-4 rounded-2xl text-white hover:bg-blue-200 hover:text-blue-700 transition-shadow lg:w-52 lg:mx-auto">ここからログインする</a>
         </section>
+        <SendMessage />
         <footer class="p-5 bg-blue-500 w-full">フッター</footer>
     </main>

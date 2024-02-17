@@ -13,7 +13,7 @@ import Common from "../components/Common.astro";
 </main>
 
 <script>
-        await document.addEventListener('DOMContentLoaded', async (event) => {
+    document.addEventListener('DOMContentLoaded', async (event) => {
       // URLから認証コードを抽出
         const urlParams = new URLSearchParams(window.location.search);
         const code = urlParams.get('code');
@@ -52,15 +52,15 @@ import Common from "../components/Common.astro";
         
         if (code) {
             try {
-            const accessToken = await fetchAccessToken(code);
-            const accessTokenDisplay = document.getElementById('accessTokenDisplay');
-            if (accessTokenDisplay) {
-                accessTokenDisplay.textContent = `Access Token: ${accessToken}`;
-            } else {
-                console.error('accessTokenDisplay element not found');
-            }
+                const accessToken = await fetchAccessToken(code);
+                const accessTokenDisplay = document.getElementById('accessTokenDisplay');
+                if (accessTokenDisplay) {
+                    accessTokenDisplay.textContent = `Access Token: ${accessToken}`;
+                } else {
+                    console.error('accessTokenDisplay element not found');
+                }
             } catch (error) {
-            console.error('Error fetching access token:', error);
+                console.error('Error fetching access token:', error);
             }
         }
     });
