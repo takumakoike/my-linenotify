@@ -3,17 +3,17 @@
 // import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
 // // const NOW_URL = Astro.url;
 
-// let code = ""
+let code = ""
 // try{
 
 
-// if(Astro.request.method === "POST"){
-// 	const formData = await Astro.request.formData();
-// 	const codeValue = formData.get('code');
-// 	if(codeValue !== null){
-// 		code = codeValue.toString();
-// 	}
-// }
+if(Astro.request.method === "POST"){
+	const formData = await Astro.request.formData();
+	const codeValue = formData.get('code');
+	if(codeValue !== null){
+		code = codeValue.toString();
+	}
+}
 
 // const AUTH_POST_ENDPOINT = "https://notify-bot.line.me/oauth/token"
 // const PARAMS = {
@@ -42,6 +42,10 @@
 		<h2 class="text-3xl text-green-500 font-bold text-center">LINEログイン認証</h2>
 		<a href="" target="_blank" class="btn bg-blue-600 flex justify-center p-2 mt-4 rounded-2xl text-white hover:bg-blue-200 hover:text-blue-700 transition-shadow lg:w-52 lg:mx-auto">ここからログインする</a>
 		<dl>
+            <div class="flex lg:flex-col gap-2 mb-5">
+                <p>取得Code</p>
+                <p>{code}</p>
+            </div>
 			<div class="flex lg:flex-col gap-2 mb-5">
                 <dd>このページのURL</dd>
                 <p>{Astro.response.status}</p>
