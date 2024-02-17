@@ -17,9 +17,14 @@ const PARAMS = {
 	client_id:CLIENTID,
 	client_secret:CLIENTSECRET,
 }
-let res = await fetch(AUTH_POST_ENDPOINT, PARAMS)
-let jsonData = await res.json()
-let token = jsonData.access_token;
+
+let res, jsonData, token;
+async function fetchToken() {
+    res = await fetch(AUTH_POST_ENDPOINT, PARAMS);
+    jsonData = await res.json();
+    token = jsonData.access_token;
+}
+fetchToken();
 ---
 <Common 
 	pageTitle="認証が完了しました"
