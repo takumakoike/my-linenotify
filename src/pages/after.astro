@@ -1,28 +1,5 @@
 ---
 import Common from "../components/Common.astro";
-
-import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
-
-// const AUTH_POST_ENDPOINT = "https://notify-bot.line.me/oauth/token"
-// const PARAMS = {
-// 	method: "POST",
-// 	headers:{
-// 		"Content-Type": "application/x-www-form-urlencoded",
-// 	},
-// 	grant_type:"authorization_code",
-// 	code:code,
-// 	redirect_uri:REDIRECT_URI,
-// 	client_id:CLIENTID,
-// 	client_secret:CLIENTSECRET,
-// }
-
-// let res, jsonData, token;
-// async function fetchToken() {
-//     res = await fetch(AUTH_POST_ENDPOINT, PARAMS);
-//     jsonData = await res.json();
-//     token = jsonData.access_token;
-// }
-// fetchToken();
 ---
 <Common 
 	pageTitle="認証が完了しました"
@@ -30,34 +7,28 @@ import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
 <main class="container flex-col flex mx-auto">
 	<header class="p-5 bg-gray-400 w-full">テスト</header>
 	<section class="container mx-auto p-3">
-		<button onclick="fetchAccessToken()">アクセストークン取得</button>
-		<!-- <dl>
-            <div class="flex lg:flex-col gap-2 mb-5">
-                <p>取得Code</p>
-                <p>{code}</p>
-            </div>
-			<div class="flex lg:flex-col gap-2 mb-5">
-                <dd>このページのURL</dd>
-                <dd>{Astro.url}</dd>
-                <dd>{Astro.url.searchParams.get(code)}</dd>
-
-                <dd>{NOW_URL}</dd>
-            </div>
-			<div  class="flex lg:flex-col gap-2 mb-5">
-                <dd>POSTリクエストに対するレスポンス全容</dd>
-                <dd>{res}</dd>
-            </div>
-			<div  class="flex lg:flex-col gap-2 mb-5">
-                <dd>POSTリクエストに対するJSONデータ</dd>
-                <dd>{jsonData}</dd>
-                <dd>{token}</dd>
-            </div>
-		</dl> -->
+        <p id="accessTokenDisplay">アクセストークンがここに表示されます。</p>
 	</section>
 	<footer class="p-5 bg-blue-500 w-full">フッター</footer>
 </main>
 
 <script>
+        document.addEventListener('DOMContentLoaded', async (event) => {
+      // URLから認証コードを抽出
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            try {
+            // アクセストークンを取得
+            const accessToken = await fetchAccessToken(code);
+            console.log('Access Token:', accessToken);
+            // アクセストークンを使用した後続の処理...
+            } catch (error) {
+            console.error('Error fetching access token:', error);
+            }
+        }
+    });
     async function fetchAccessToken(code:string) {
         const response = await fetch('/api/auth', {
             method: 'POST',
@@ -75,4 +46,22 @@ import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
         console.log(data.accessToken);
         return data.accessToken;
     }
+    document.addEventListener('DOMContentLoaded', async (event) => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        
+        if (code) {
+            try {
+            const accessToken = await fetchAccessToken(code);
+            const accessTokenDisplay = document.getElementById('accessTokenDisplay');
+            if (accessTokenDisplay) {
+                accessTokenDisplay.textContent = `Access Token: ${accessToken}`;
+            } else {
+                console.error('accessTokenDisplay element not found');
+            }
+            } catch (error) {
+            console.error('Error fetching access token:', error);
+            }
+        }
+    });
 </script>
