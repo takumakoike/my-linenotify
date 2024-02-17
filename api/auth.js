@@ -2,6 +2,7 @@
 export default async (req, res) => {
     if (req.method === 'POST') {
         const { code } = req.body;
+        console.log(code)
         const CLIENT_ID = process.env.LINE_CLIENT_ID;
         const CLIENT_SECRET = process.env.LINE_CLIENT_SECRET;
         const REDIRECT_URI = process.env.LINE_REDIRECT_URI;
