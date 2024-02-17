@@ -1,11 +1,9 @@
 ---
-// import Common from "../components/Common.astro";
-// import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
-// // const NOW_URL = Astro.url;
+import Common from "../components/Common.astro";
+import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
+const NOW_URL = Astro.url;
 
 let code = ""
-// try{
-
 
 if(Astro.request.method === "POST"){
 	const formData = await Astro.request.formData();
@@ -15,27 +13,24 @@ if(Astro.request.method === "POST"){
 	}
 }
 
-// const AUTH_POST_ENDPOINT = "https://notify-bot.line.me/oauth/token"
-// const PARAMS = {
-// 	method: "POST",
-// 	headers:{
-// 		"Content-Type": "application/x-www-form-urlencoded",
-// 	},
-// 	grant_type:"authorization_code",
-// 	code:code,
-// 	redirect_uri:REDIRECT_URI,
-// 	client_id:CLIENTID,
-// 	client_secret:CLIENTSECRET,
-// }
-// } catch(error){
-//     console.error(error)
-// }
-// let response = await fetch(AUTH_POST_ENDPOINT, PARAMS)
-// let jsonData = await response.json()
+const AUTH_POST_ENDPOINT = "https://notify-bot.line.me/oauth/token"
+const PARAMS = {
+	method: "POST",
+	headers:{
+		"Content-Type": "application/x-www-form-urlencoded",
+	},
+	grant_type:"authorization_code",
+	code:code,
+	redirect_uri:REDIRECT_URI,
+	client_id:CLIENTID,
+	client_secret:CLIENTSECRET,
+}
+let response = await fetch(AUTH_POST_ENDPOINT, PARAMS)
+let jsonData = await response.json()
 ---
-<!-- <Common 
+<Common 
 	pageTitle="認証が完了しました"
-/> -->
+/>
 <main class="container flex-col flex mx-auto">
 	<header class="p-5 bg-gray-400 w-full">テスト</header>
 	<section class="container mx-auto p-3">
@@ -50,17 +45,17 @@ if(Astro.request.method === "POST"){
                 <dd>このページのURL</dd>
                 <p>{Astro.response.status}</p>
                 
-                <!-- <dd>{NOW_URL}</dd> -->
+                <dd>{NOW_URL}</dd>
             </div>
-            <!-- {AUTH_POST_ENDPOINT} -->
+            {AUTH_POST_ENDPOINT}
 			<div  class="flex lg:flex-col gap-2 mb-5">
                 <dd>POSTリクエストに対するレスポンス全容</dd>
-                <!-- <dd>{response}</dd> -->
+                <dd>{response}</dd>
             </div>
-            <!-- {PARAMS.client_id} -->
+            {PARAMS.client_id}
 			<div  class="flex lg:flex-col gap-2 mb-5">
                 <dd>POSTリクエストに対するJSONデータ</dd>
-                <!-- <dd>{jsonData}</dd> -->
+                <dd>{jsonData}</dd>
             </div>
 		</dl>
 	</section>
