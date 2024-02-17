@@ -1,7 +1,8 @@
 ---
 import Common from "../components/Common.astro";
 import {CLIENTID, CLIENTSECRET, REDIRECT_URI} from "./index.astro"
-const NOW_URL = new URL(Astro.url.href).toString();
+const NOW_URL = new URL(Astro.url).toString();
+
 let code = NOW_URL.substring(REDIRECT_URI.length+1,22);
 
 const AUTH_POST_ENDPOINT = "https://notify-bot.line.me/oauth/token"
